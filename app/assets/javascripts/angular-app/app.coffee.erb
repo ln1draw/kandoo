@@ -1,0 +1,20 @@
+angular.module 'kandooApp', ['ngResource', 'ngRoute']
+  .config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+    $locationProvider.html5Mode true
+    $routeProvider
+      .when '/new_task',
+        {
+          templateUrl: "<%= asset_path('tasks/new.html.haml') %>",
+          controller: 'NewTaskController'
+        }
+
+    # .otherwise({ redirectTo: "/contacts" });
+  ]
+  .controller 'WelcomeController', ['$scope', ($scope) ->
+    console.log "did a different thing"
+  ]
+
+  .controller 'NewTaskController', ['$scope', ($scope) ->
+    console.log 'did the thing'
+    $scope.foo = "GREAT JOB, YOU!"
+  ]

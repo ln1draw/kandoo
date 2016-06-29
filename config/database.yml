@@ -1,0 +1,19 @@
+development:
+  adapter: postgresql
+  database: kandoo_development
+  pool: 5
+  host: localhost
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: kandoo_test
+  pool: 5
+  host: localhost
+  port: 5432
+
+production:
+  adapter: postgresql
+  database: kandoo_production
+  pool: 5
+  host: localhost
