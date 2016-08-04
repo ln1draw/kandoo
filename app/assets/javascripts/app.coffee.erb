@@ -1,0 +1,17 @@
+angular.module 'kandooApp', [
+  'ngResource',
+  'ui.router',
+  'welcome'
+]
+
+.config ['$stateProvider', '$locationProvider', ($stateProvider, $locationProvider) ->
+  $locationProvider.html5Mode true
+  $stateProvider
+    .state '/new_task',
+      {
+        templateUrl: "<%= asset_path('tasks/new.html.haml') %>",
+        controller: 'NewTaskController'
+      }
+
+  # .otherwise({ redirectTo: "/" });
+]

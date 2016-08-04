@@ -1,4 +1,5 @@
-angular.module 'kandooApp', []
+angular.module 'welcome', []
+
   .controller 'WelcomeController', ['$scope', '$http', ($scope, $http) ->
     $scope.test = "Hello World"
 

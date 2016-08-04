@@ -21,18 +21,12 @@
       .tasks
         %ul.list-unstyled.container-fluid
           %li.row
-            %h5.col-xs-3 Task Name
-            %h5.col-xs-4 Details
-            %h5.col-xs-3 Due
-            %h5.col-xs-2 Status
+            %h5.col-xs-6 Task
+            %h5.col-xs-6 Due
 
           %li.row{"ng-repeat" => "task in tasks"}
-            %span.col-xs-3 {{task.title}}
-            %span.col-xs-4 {{task.description}}
-            %span.col-xs-3 {{task.due_date}}
-            %span.col-xs-2
-              %span{"ng-if" => "!task.active"} COMPLETE!
-              %button{"ng-if" => "task.active", "ng-click" => "completeTask(task.id)"} complete task
+            %a.col-xs-6{href: "/tasks/{{task.id}}"} {{task.title}}
+            %span.col-xs-6 {{task.due_date}}
 
       .task-form{"ng-if" => "showForm"}
         %form{"ng-submit" => "submitTask()"}

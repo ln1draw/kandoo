@@ -16,5 +16,6 @@
 //= require angular
 //= require angular-resource
 //= require angular-ui-router
+//= require app
 //= require_tree ./angular-app
 //= require_tree .
