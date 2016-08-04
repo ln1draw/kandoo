@@ -8,18 +8,23 @@ angular.module 'kandooApp', []
     $scope.newTask = {
       title: '',
       description: '',
-      dueDate: ''
+      dueDate: todaysDate
     }
 
-    $http.get('/api/v1/tasks').success (response, status) ->
-      $scope.tasks = response
+    refreshTaskList = ->
+      $http.get('/api/v1/tasks').success (response, status) ->
+        $scope.tasks = response
 
     $scope.showTaskForm = ->
       $scope.showForm = true
 
     $scope.submitTask = ->
-
       $http.post('/api/v1/task', $scope.newTask, {}).success (response, status) ->
         $scope.tasks.push response
 
+    $scope.completeTask = (id) ->
+      $http.post('/api/v1/task/' + id + '/complete', {}).success (response, status) ->
+        refreshTaskList()
+
+    refreshTaskList()
   ]

@@ -10,8 +10,9 @@ Rails.application.routes.draw do
 
   scope '/api' do
     scope '/v1' do
-      post 'task' =>'api#create'
-      get 'tasks' => 'api#index'
+      post 'task'              => 'api#create'
+      get  'tasks'             => 'api#index'
+      post 'task/:id/complete' => 'api#complete'
     end
   end
 end

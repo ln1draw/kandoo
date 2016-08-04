@@ -10,4 +10,12 @@ class ApiController < ApplicationController
 
     render json: @tasks
   end
+
+  def complete
+    @task = Task.find(params[:id])
+    @task.active = false
+    @task.save!
+
+    render json: @task
+  end
 end

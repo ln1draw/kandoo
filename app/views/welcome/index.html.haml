@@ -8,26 +8,41 @@
       %button.btn.btn-default.navbar-btn{type: "button"} Sign In
 
   / user is logged in
-  .logged_in{"ng-if" => "#{user_signed_in?}"}
-    %h1 Welcome to Kandoo, #{current_user.email}
-    %a{href: "#{destroy_user_session_path}"}
-      %button.btn.btn-default.navbar-btn{type: "button"} Log Out
+  - if user_signed_in?
+    .logged_in
+      %h1 Welcome to Kandoo, #{current_user.email}
+      %a{href: "#{destroy_user_session_path}"}
+        %button.btn.btn-default.navbar-btn{type: "button"} Log Out
 
-    %button.btn.btn-default{type: "button", "ng-click" => "showTaskForm()"} Create a new task!
+      %button.btn.btn-default{type: "button", "ng-click" => "showTaskForm()"} Create a new task!
 
-    .tasks
-      %ul
-        %li{"ng-repeat" => "task in tasks"} {{task.title}} {{task.id}} {{task.description}}
+      %div{"ui-view" => ""}
 
-    .task-form{"ng-if" => "showForm"}
-      %form{"ng-submit" => "submitTask()"}
-        %fieldset.form-group
-          %label{for: "task-title"}Title
-          %input.form-control{id: "task-title", type: "text", placeholder: "Think of a great task name", required: true, "ng-model" => "newTask.title"}
-        %fieldset.form-group
-          %label{for: "task-description"}Description
-          %input.form-control{id: "task-description", type: "text", placeholder: "Any additional details about your new task", "ng-model" => "newTask.description"}
-        %fieldset.form-group
-          %label Due Date
-          %input.form-control{type: "date", "ng-model" => "newTask.dueDate"}
-        %input{type: "submit", id: "submit", value: "Submit"}
+      .tasks
+        %ul.list-unstyled.container-fluid
+          %li.row
+            %h5.col-xs-3 Task Name
+            %h5.col-xs-4 Details
+            %h5.col-xs-3 Due
+            %h5.col-xs-2 Status
+
+          %li.row{"ng-repeat" => "task in tasks"}
+            %span.col-xs-3 {{task.title}}
+            %span.col-xs-4 {{task.description}}
+            %span.col-xs-3 {{task.due_date}}
+            %span.col-xs-2
+              %span{"ng-if" => "!task.active"} COMPLETE!
+              %button{"ng-if" => "task.active", "ng-click" => "completeTask(task.id)"} complete task
+
+      .task-form{"ng-if" => "showForm"}
+        %form{"ng-submit" => "submitTask()"}
+          %fieldset.form-group
+            %label{for: "task-title"}Title
+            %input.form-control{id: "task-title", type: "text", placeholder: "Think of a great task name", required: true, "ng-model" => "newTask.title"}
+          %fieldset.form-group
+            %label{for: "task-description"}Description
+            %input.form-control{id: "task-description", type: "text", placeholder: "Any additional details about your new task", "ng-model" => "newTask.description"}
+          %fieldset.form-group
+            %label Due Date
+            %input.form-control{type: "date", "ng-model" => "newTask.dueDate"}
+          %input{type: "submit", id: "submit", value: "Submit"}

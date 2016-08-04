@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.3'
 gem 'angularjs-rails'
+gem 'angular-ui-router-rails', '~> 0.2.15'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.2.0'
